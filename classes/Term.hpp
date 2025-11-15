@@ -2,12 +2,21 @@
 #define TERM_H
 
 #include <string>
-#include <vector>
 #include <map>
 
 class Term {
-    std::map<std::string, int> module;
-};
+private:
+    std::map<std::string, int> modules;
 
+public:
+    Term(int termCode);
+
+    void addModuleMark(std::string moduleCode, float mark);
+
+    const std::map<std::string, int>& getModules() const {
+        return modules;
+    }
+
+};
 
 #endif

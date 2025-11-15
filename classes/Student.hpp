@@ -9,7 +9,6 @@ class Student {
     std:: string id;
     std::vector<double> marks;
     Term terms;
-
 };
 
 #endif
