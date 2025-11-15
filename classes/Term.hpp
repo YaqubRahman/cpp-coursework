@@ -7,6 +7,7 @@
 class Term {
 private:
     std::map<std::string, int> modules;
+    int termCode;
 
 public:
     Term(int termCode);
