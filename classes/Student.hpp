@@ -3,12 +3,12 @@
 
 #include <string>
 #include <vector>
+#include "Term.hpp"
 
 class Student {
     std:: string id;
     std::vector<double> marks;
-    double term_average;
-    double overal_average;
+    Term terms;
 
 };
 
