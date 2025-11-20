@@ -17,21 +17,13 @@ public:
         return id;
     }
 
-    const Term getTerms() const {
-        return terms;
-    }
+    const Term getTerms() const;
 
-    const double getOveralAverage() const {
-        return overalAverage;
-    }
+    const double getOveralAverage() const;
 
-    void setTerms(Term terms) {
-        this->terms = terms;
-    }
+    void setTerms(Term terms);
 
-    void setOveralAverage(double overalAverage) {
-        this->overalAverage = overalAverage;
-    }
+    void setOveralAverage(double overalAverage);
 
 
 };

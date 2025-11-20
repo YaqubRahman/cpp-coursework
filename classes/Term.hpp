@@ -14,10 +14,7 @@ public:
 
     void addModuleMark(std::string moduleCode, float mark);
 
-    const std::map<std::string, int>& getModules() const {
-        return modules;
-    }
-
+    const std::map<std::string, int>& getModules() const;
 };
 
 #endif

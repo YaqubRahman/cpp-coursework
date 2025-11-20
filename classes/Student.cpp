@@ -1,4 +1,4 @@
-#include "Term.cpp"
+#include "Term.hpp"
 #include "Student.hpp"
 #include <string>
 

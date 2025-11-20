@@ -1,3 +1,2 @@
-<student_id> [term_code] 
 20231234
 20236789 252
