@@ -13,9 +13,7 @@ private:
 public:
     Student(std::string id, Term terms, double overalAverage);
 
-    const std::string getId() const {
-        return id;
-    }
+    const std::string getId() const;
 
     const Term getTerms() const;
 

@@ -36,7 +36,7 @@ int add_student_record() {
 int main() {
     add_student_record();
     for (std::size_t i = 0; i < students.size(); ++i) {
-        cout << "Students loaded: " << students.size() << '\n';
+        cout << "Student " << i << " ID " << students[i].getId() << '\n';
 
     }
 }
