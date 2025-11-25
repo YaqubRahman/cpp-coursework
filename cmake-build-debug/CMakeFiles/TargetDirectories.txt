@@ -1,3 +1,0 @@
-C:/Users/yaqub/Documents/Yaqub Rahman/IN2029 Introduction to C++/Coursework - Yaqub Rahman/cmake-build-debug/CMakeFiles/Coursework___Yaqub_Rahman.dir
-C:/Users/yaqub/Documents/Yaqub Rahman/IN2029 Introduction to C++/Coursework - Yaqub Rahman/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/yaqub/Documents/Yaqub Rahman/IN2029 Introduction to C++/Coursework - Yaqub Rahman/cmake-build-debug/CMakeFiles/rebuild_cache.dir
