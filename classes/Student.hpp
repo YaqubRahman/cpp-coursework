@@ -2,26 +2,29 @@
 #define STUDENT_H
 
 #include <string>
+#include <vector>
 #include "Term.hpp"
 
 class Student {
 private:
     std:: string id;
-    double overalAverage;
-    Term terms;
+    std::vector<Term> terms;
+    double overallAverage;
 
 public:
-    Student(std::string id, Term terms, double overalAverage);
+    Student(std::string id, const std::vector<Term> &terms, double overallAverage);
 
-    const std::string getId() const;
+    std::string getId() const;
 
-    const Term getTerms() const;
+    const std::vector<Term> getTerms() const;
 
-    const double getOveralAverage() const;
+    double getOverallAverage() const;
 
-    void setTerms(Term terms);
+    void setTerms(const std::vector<Term> &terms);
 
-    void setOveralAverage(double overalAverage);
+    void addModuleMark(int termCode, const std::string &moduleCode, int mark);
+
+    void setOverallAverage(double overallAverage);
 
 
 };

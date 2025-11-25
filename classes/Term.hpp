@@ -12,9 +12,13 @@ private:
 public:
     Term(int termCode);
 
-    void addModuleMark(std::string moduleCode, float mark);
+    void addModuleMark(std::string moduleCode, int mark);
 
     const std::map<std::string, int>& getModules() const;
+
+    int getTermCode() const;
+
+
 };
 
 #endif
