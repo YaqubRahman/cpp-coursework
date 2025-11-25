@@ -1,0 +1,24 @@
+# CLion
+.idea/
+
+# CMake build
+cmake-build-debug/
+cmake-build-release/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Build output
+*.exe
+*.obj
+*.o
+*.a
+*.out
+*.ninja
+*.ninja_deps
+*.ninja_log
+
+# Temporary files
+*.log
+*.tmp

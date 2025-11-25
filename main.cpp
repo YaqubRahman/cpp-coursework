@@ -16,25 +16,25 @@ vector<Student> students;
 map<string, string> module_names;
 
 
-// int add_modules_record() {
-//     ifstream in("data/modules.txt");
-//     string line;
-//     string module_code;
-//     string module_name;
-//
-//     while (getline(in, line)) {
-//         istringstream line_s(line);
-//
-//         if(!(line_s >> module_code)){
-//             continue;
-//         }
-//
-//         if(line_s >> ws && getline(line_s, module_name)){
-//             module_names[module_code] = module_name;
-//         }
-//     }
-//     return 0;
-// }
+int add_modules_record() {
+    ifstream in("data/modules.txt");
+    string line;
+    string module_code;
+    string module_name;
+
+    while (getline(in, line)) {
+        istringstream line_s(line);
+
+        if(!(line_s >> module_code)){
+            continue;
+        }
+
+        if(line_s >> ws && getline(line_s, module_name)){
+            module_names[module_code] = module_name;
+        }
+    }
+    return 0;
+}
 
 int add_student_record() {
     ifstream in("data/requests.txt");
