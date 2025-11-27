@@ -76,12 +76,21 @@ int main() {
     add_modules_record();
     add_student_record();
     for (std::size_t i = 0; i < students.size(); ++i) {
-        cout << "Student " << i << " ID " << students[i].getId() << '\n';
+        cout << '\n' << "Student " << i << " ID " << students[i].getId() << '\n';
         const auto& terms = students[i].getTerms();
         cout << "Terms:\n";
+
         for (int i = 0; i < terms.size(); ++i) {
             const Term& t = terms[i];
             cout << "  Term code: " << t.getTermCode() << "\n";
+
+            const std::map<std::string, int>& modules = t.getModules();
+            map<string, int>::const_iterator it = modules.begin();
+
+            for (it = modules.begin(); it != modules.end(); ++it)
+            {
+                cout << "    Modules: " << it->first << "\n";
+            }
         }
     }
     cout << module_names["CSC1027"];
