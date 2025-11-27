@@ -72,15 +72,6 @@ int add_student_record() {
     return 0;
 }
 
-// int add_terms_record() {
-//     ifstream in("data/grades.txt");
-//
-//     for(int i = 0; i < students.size(); i++){
-//
-//     }
-//     return 0;
-// }
-
 int main() {
     add_modules_record();
     add_student_record();
@@ -88,7 +79,8 @@ int main() {
         cout << "Student " << i << " ID " << students[i].getId() << '\n';
         const auto& terms = students[i].getTerms();
         cout << "Terms:\n";
-        for (const Term& t : terms) {
+        for (int i = 0; i < terms.size(); ++i) {
+            const Term& t = terms[i];
             cout << "  Term code: " << t.getTermCode() << "\n";
         }
     }
