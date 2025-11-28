@@ -20,7 +20,7 @@ int add_modules_record() {
     string line;
     string module_code;
     string module_name;
-    int credits;
+    string credits;
 
     while (getline(in, line)) {
         istringstream line_s(line);
@@ -30,7 +30,7 @@ int add_modules_record() {
         }
 
         if(getline(line_s, module_name)){
-            module_names[module_code] = module_name;
+            module_names[module_code] = module_name +" "+"("+ credits +" credits"+")";
         }
     }
     return 0;
@@ -76,20 +76,21 @@ int main() {
     add_modules_record();
     add_student_record();
     for (std::size_t i = 0; i < students.size(); ++i) {
-        cout << '\n' << "Student " << i << " ID " << students[i].getId() << '\n';
+        cout << '\n' << "Student " << "ID " << students[i].getId() << '\n';
         const auto& terms = students[i].getTerms();
-        cout << "Terms:\n";
 
         for (int i = 0; i < terms.size(); ++i) {
             const Term& t = terms[i];
-            cout << "  Term code: " << t.getTermCode() << "\n";
+            cout << "  Term " << t.getTermCode() << "\n";
 
             const std::map<std::string, int>& modules = t.getModules();
             map<string, int>::const_iterator it = modules.begin();
 
             for (it = modules.begin(); it != modules.end(); ++it)
             {
-                cout << "    Modules: " << it->first << "\n";
+                string code = it->first;
+                string name = module_names[code];
+                cout << "    " << code << name << "\n";
             }
         }
     }
