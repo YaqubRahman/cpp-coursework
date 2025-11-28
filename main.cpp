@@ -30,7 +30,7 @@ int add_modules_record() {
         }
 
         if(getline(line_s, module_name)){
-            module_names[module_code] = module_name +" "+"("+ credits +" credits"+")";
+            module_names[module_code] = module_name +" "+"("+ credits +" credits"+"): ";
         }
     }
     return 0;
@@ -88,9 +88,10 @@ int main() {
 
             for (it = modules.begin(); it != modules.end(); ++it)
             {
-                string code = it->first;
-                string name = module_names[code];
-                cout << "    " << code << name << "\n";
+                const string code = it->first;
+                const int mark = it->second;
+                const string name = module_names[code];
+                cout << "    " << code << name << mark << "\n";
             }
         }
     }
