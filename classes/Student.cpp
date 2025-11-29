@@ -11,7 +11,13 @@ std::string Student::getId() const {
     return id;
 }
 
-const std::vector<Term> Student::getTerms() const {
+// A const one
+const std::vector<Term>& Student::getTerms() const {
+    return terms;
+}
+// A non const one
+std::vector<Term>& Student::getTerms()
+{
     return terms;
 }
 

@@ -72,11 +72,13 @@ int compute_average()
 {
     for (int i = 0; i < students.size(); ++i)
     {
+        float student_weighted_sum = 0;
+        float student_credits_sum = 0;
         for (int j = 0; j < students[i].getTerms().size(); ++j)
         {
             float weighted_sum = 0;
             float credits_sum = 0;
-            const Term& term = students[i].getTerms()[j];
+            Term& term = students[i].getTerms()[j];
             const map<string,int>& modules = term.getModules();
 
             map<string,int>::const_iterator it;
@@ -90,11 +92,11 @@ int compute_average()
             float term_average = weighted_sum / credits_sum;
             term.setTermAverage(term_average);
 
-
+            student_weighted_sum += weighted_sum;
+            student_credits_sum += credits_sum;
         }
-        float student_average = ...
-
-
+        float student_average = student_weighted_sum / student_credits_sum;
+        students[i].setOverallAverage(student_average);
     }
 return 0;
 }
@@ -121,6 +123,7 @@ int main() {
                 const string name = module_names[code];
                 cout << "    " << code << name << mark << "\n";
             }
+            cout << "Term Average: " << t.getTermAverage() << "\n";
         }
     }
 }

@@ -16,7 +16,8 @@ public:
 
     std::string getId() const;
 
-    const std::vector<Term> getTerms() const;
+    const std::vector<Term>& getTerms() const;
+    std::vector<Term>& getTerms();
 
     double getOverallAverage() const;
 
