@@ -47,6 +47,7 @@ int add_student_record() {
     int mark;
     while (getline(in, line)) {
         istringstream line_s(line);
+        // We set an index to -1 indicating there is no student of index -1
         int index = -1;
         if (!(line_s >> student_id >> term_code >> module_code >> mark)) {
             continue;
@@ -60,6 +61,7 @@ int add_student_record() {
             students.push_back(Student(student_id, {}, 0));
             index = students.size() - 1;
         }
+        // Adding the module_code and mark for each student
         students[index].addModuleMark(term_code, module_code, mark);
     }
     return 0;
@@ -80,6 +82,7 @@ int compute_average()
             const map<string,int>& modules = term.getModules();
 
             map<string,int>::const_iterator it;
+            // Looping over each module in a specific term
             for (it = modules.begin(); it != modules.end(); ++it) {
                 string moduleCode = it->first;
                 float mark = it->second;
@@ -87,12 +90,14 @@ int compute_average()
                 weighted_sum += mark * credit;
                 credits_sum += credit;
             }
+            // Calculation for the term average
             float term_average = weighted_sum / credits_sum;
             term.setTermAverage(term_average);
 
             student_weighted_sum += weighted_sum;
             student_credits_sum += credits_sum;
         }
+        // Calculation for the student average
         float student_average = student_weighted_sum / student_credits_sum;
         students[i].setOverallAverage(student_average);
     }
@@ -138,8 +143,9 @@ int handle_requests()
         // If no term is specified - show all terms
         if (!has_term)
         {
-            cout << "\nStudent ID " << student.getId() << "\n";
+            cout << "\nStudent ID: " << student.getId() << "\n";
             const vector<Term>& terms = student.getTerms();
+            // Loop over each term and output it
             for (int i = 0; i < terms.size(); ++i)
             {
                 const Term& term = terms[i];
@@ -148,6 +154,7 @@ int handle_requests()
                 const map<string, int>& modules = term.getModules();
                 map<string,int>::const_iterator it;
 
+                // Loop over each module with the code, name and mark and output it
                 for (it = modules.begin(); it != modules.end(); ++it)
                 {
                     const string code = it->first;
@@ -163,19 +170,21 @@ int handle_requests()
         // If terms are specified
         else
         {
-            cout << "\nStudent ID " << student.getId() << '\n';
+            cout << "\nStudent ID: " << student.getId() << '\n';
             const vector<Term> &terms = student.getTerms();
+            // Loop over each term and output only the ones specified
             for (int i = 0; i < terms.size(); ++i)
             {
                 const Term &term = terms[i];
                 // Checking if the termcode specified is the current termcode
                 if (term.getTermCode() == term_code)
                 {
-                    cout << "  Term " << term.getTermCode() << "\n";
+                    cout << "  Term " << term.getTermCode() << ":" << "\n";
 
                     const map<string, int> &modules = term.getModules();
                     map<string, int>::const_iterator it;
 
+                    // Loop over each module with the code, name and mark and output it
                     for (it = modules.begin(); it != modules.end(); ++it)
                     {
                         const string code = it->first;
