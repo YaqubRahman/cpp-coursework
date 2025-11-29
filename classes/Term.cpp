@@ -16,3 +16,13 @@ const std::map<std::string, int>& Term::getModules() const{
 int Term::getTermCode() const {
     return termCode;
 }
+
+void Term::setTermAverage(float value)
+{
+    this->termAverage=value;
+}
+
+float Term::getTermAverage() const{
+    return termAverage;
+
+}

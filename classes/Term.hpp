@@ -6,8 +6,10 @@
 
 class Term {
 private:
-    std::map<std::string, int> modules;
     int termCode;
+    std::map<std::string, int> modules;
+    float termAverage;
+
 
 public:
     Term(int termCode);
@@ -17,6 +19,10 @@ public:
     const std::map<std::string, int>& getModules() const;
 
     int getTermCode() const;
+
+    void setTermAverage(float value);
+
+    float getTermAverage() const;
 
 
 };
