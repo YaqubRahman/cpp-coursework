@@ -16,7 +16,7 @@ map<string, string> module_names;
 // Map holding the module codes with the module credits
 map<string, int> module_credits;
 
-
+// Function to assign each module code to its corresponding module name
 int add_modules_record() {
     ifstream in("data/modules.txt");
     string line;
@@ -37,12 +37,9 @@ int add_modules_record() {
     return 0;
 }
 
+// Function to add all the students from grades.txt with corresponding term code, module code and mark
 int add_student_record() {
     ifstream in("data/grades.txt");
-    // This was for debugging - remove later
-    if (!in) {
-        cerr << "Unable to open data/grades.txt" << endl;
-    }
     string line;
     string student_id;
     int term_code;
@@ -68,6 +65,7 @@ int add_student_record() {
     return 0;
 }
 
+// Function to calculate the averages for term average and overall average for each student
 int compute_average()
 {
     for (int i = 0; i < students.size(); ++i)
@@ -101,33 +99,106 @@ int compute_average()
 return 0;
 }
 
+// Function for handling what students should show from requests.txt
+int handle_requests()
+{
+    ifstream in("data/requests.txt");
+    string line;
+    string student_id;
+    int term_code;
+    while (getline(in, line))
+    {
+        istringstream line_s(line);
+        if (!(line_s >> student_id ))
+        {
+            continue;
+        }
+        // Check if there is a term code on the line
+        bool has_term = false;
+        if (line_s >> term_code)
+        {
+            has_term = true;
+        }
+        // Finding the student in the vector
+        int index = -1;
+        for (int i = 0; i < students.size(); ++i)
+        {
+            if (students[i].getId() == student_id)
+            {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1)
+        {
+            continue;
+        }
+        Student& student = students[index];
+
+        // If no term is specified - show all terms
+        if (!has_term)
+        {
+            cout << "\nStudent ID " << student.getId() << "\n";
+            const vector<Term>& terms = student.getTerms();
+            for (int i = 0; i < terms.size(); ++i)
+            {
+                const Term& term = terms[i];
+                cout << "  Term " << term.getTermCode() << ":" << "\n";
+
+                const map<string, int>& modules = term.getModules();
+                map<string,int>::const_iterator it;
+
+                for (it = modules.begin(); it != modules.end(); ++it)
+                {
+                    const string code = it->first;
+                    const int mark = it->second;
+                    const string name = module_names[code];
+                    cout << "    " << code << name << mark << "\n";
+                }
+                cout << "  Term Average: " <<  term.getTermAverage() <<  "\n";
+            }
+            cout << "  Overall Average: " << student.getOverallAverage() << "\n";
+        }
+
+        // If terms are specified
+        else
+        {
+            cout << "\nStudent ID " << student.getId() << '\n';
+            const vector<Term> &terms = student.getTerms();
+            for (int i = 0; i < terms.size(); ++i)
+            {
+                const Term &term = terms[i];
+                // Checking if the termcode specified is the current termcode
+                if (term.getTermCode() == term_code)
+                {
+                    cout << "  Term " << term.getTermCode() << "\n";
+
+                    const map<string, int> &modules = term.getModules();
+                    map<string, int>::const_iterator it;
+
+                    for (it = modules.begin(); it != modules.end(); ++it)
+                    {
+                        const string code = it->first;
+                        const int mark = it->second;
+                        const string name = module_names[code];
+                        cout << "    " << code << name << mark << "\n";
+                    }
+                    cout << "  Term Average: " << term.getTermAverage() << "\n";
+                    break;
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+// Main function where program starts execution
 int main() {
     add_modules_record();
     add_student_record();
     compute_average();
-
     cout << fixed << setprecision(2);
+    handle_requests();
 
-    for (std::size_t i = 0; i < students.size(); ++i) {
-        cout << '\n' << "Student " << "ID " << students[i].getId() << '\n';
-        const auto& terms = students[i].getTerms();
-
-        for (int i = 0; i < terms.size(); ++i) {
-            const Term& t = terms[i];
-            cout << "  Term " << t.getTermCode() << "\n";
-
-            const std::map<std::string, int>& modules = t.getModules();
-            map<string, int>::const_iterator it = modules.begin();
-
-            for (it = modules.begin(); it != modules.end(); ++it)
-            {
-                const string code = it->first;
-                const int mark = it->second;
-                const string name = module_names[code];
-                cout << "    " << code << name << mark << "\n";
-            }
-            cout << "  Term Average: " <<  t.getTermAverage() <<  "\n";
-        }
-        cout << "  Overall Average: " <<  students[i].getOverallAverage() <<  "\n";
-    }
+    return 0;
 }
