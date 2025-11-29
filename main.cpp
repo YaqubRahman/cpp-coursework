@@ -4,7 +4,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <cctype>
+#include <iomanip>
 #include <sstream>
 
 using namespace std;
@@ -105,6 +105,9 @@ int main() {
     add_modules_record();
     add_student_record();
     compute_average();
+
+    cout << fixed << setprecision(2);
+
     for (std::size_t i = 0; i < students.size(); ++i) {
         cout << '\n' << "Student " << "ID " << students[i].getId() << '\n';
         const auto& terms = students[i].getTerms();
@@ -123,7 +126,8 @@ int main() {
                 const string name = module_names[code];
                 cout << "    " << code << name << mark << "\n";
             }
-            cout << "Term Average: " << t.getTermAverage() << "\n";
+            cout << "  Term Average: " <<  t.getTermAverage() <<  "\n";
         }
+        cout << "  Overall Average: " <<  students[i].getOverallAverage() <<  "\n";
     }
 }
